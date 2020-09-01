@@ -19,17 +19,18 @@ let person3 = {
     age: 20
 };
 
+
 /*
 DO NOT EDIT ANYTHING ABOVE THIS LINE
 WRITE YOUR CODE BELOW
 */
 
 
-let persons = // Complete here
+let persons = [person1, person2, person3]; // Complete here
 
-let personNames = // Complete here
+let personNames = persons.map(el => el.name); // Complete here
 
-let personsYoungerThan28YearsOld = // Complete here
+let personsYoungerThan28YearsOld = persons.filter(el => el.age < 28); // Complete here
 
 
 /*
