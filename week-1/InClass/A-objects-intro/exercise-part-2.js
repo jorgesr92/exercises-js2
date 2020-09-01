@@ -4,18 +4,25 @@ The objects below have some syntax issues - try and fix them all!
 
 */
 
-var kitten = {
-    fur colour: "orange",
-    age "23"
+let kitten = {
+    furColour: "orange",
+    age: 23
 };
 
-var laptop = 
-    brand: "Lenovo"
-    ram "5GB"
-}
+let laptop = {
+    brand: "Lenovo",
+    ram: "5GB"
+};
 
-var phone = {
-    operating system "iOS",
+let phone = {
+    operatingSystem: "iOS",
     hasStylus: true,
-    megapixels 12
-    "batteryLife": "24 hours"
+    megapixels: 12,
+    batteryLife: 24.0 // horas
+};
+
+if (phone.hasStylus){
+    console.log("Phone Has Stylus")
+} else {
+    console.log("Phone doesn't has Stylus")
+}
