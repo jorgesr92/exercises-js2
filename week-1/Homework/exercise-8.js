@@ -107,6 +107,12 @@ mentors that are in Barcelona and one of the skills is React
 "Hi, my name is {firstName} {lastName}. I work in Barcelona and i know React."
 */
 mentors.filter(el => el.job.city === "Barcelona" && el.skills.includes("React")).forEach(el => console.log(`Hi, my name is ${el.firstName} ${el.lastName}. I work in Barcelona and i know React.`));
+mentors.forEach(mentor => {
+  if (mentor.job.city === "Barcelona" && mentor.skills.includes("React")){
+    console.log(`Hi, my name is ${mentor.firstName} ${mentor.lastName}. I work in Barcelona and i know React.`);
+  }
+});
+
 /*
 2. To those that work in Barcelona, set "Jun1" in the class attribute, 
 and add a new skill to the list "SQL".
@@ -114,10 +120,10 @@ To add elements in an array you can use .push()
 var animals = ["dog","cat"];
 animals.push("horse"); //["dog","cat","horse"]
 */
-mentors.map(el =>{
-  if(el.job.city === "Barcelona") {
-    el.class = "Jun1";
-    el.skills.push("SQL");
+mentors.forEach(mentor =>{
+  if(mentor.job.city === "Barcelona") {
+    mentor.class = "Jun1";
+    mentor.skills.push("SQL");
   }
 });
 
@@ -131,15 +137,15 @@ console.log(sequence);
 
 3. Create an object method with the name .addSkill() to be able to add skills from it
 */
-mentors.map(el => el.addSkill = function(newSkill){this.skills.push(newSkill)});
-mentors.map(el => el.addSkill("Angular"));
+mentors.forEach(el => el.addSkill = function(newSkill){this.skills.push(newSkill)});
+mentors.forEach(el => el.addSkill("Angularjs"));
 console.log(mentors);
 /*
 4. Create a function to add a skill to all members in a list of mentors
 */
 
 function addSkill(mentors,newSkill){
-  return mentors.map(el => el.skills.push(newSkill));
+  return mentors.forEach(el => el.skills.push(newSkill));
   //your code here
 }
 
@@ -151,7 +157,7 @@ console.log(mentors);
 5. Create a function to remove a skill to all members in a list of mentors
 */
 function removeSkill(mentors,newSkill){
-  return mentors.map(el => el.skills.splice(el.skills.indexOf(newSkill),1));
+  return mentors.forEach(el => el.skills.splice(el.skills.indexOf(newSkill),1));
   //your code here
 }
 removeSkill(mentors, 'Angular');
@@ -169,14 +175,14 @@ console.log(`the mentor with more nunmber of skills is ${ mentorWithMoreSkills(m
 /*
 7. Create an object method .addStudentLikes() that increments by one the attribute studentLikes
 */
-mentors.map(el => el.addStudentLikes = function(){++this.studentLikes});
-mentors.map(el => el.addStudentLikes());
+mentors.forEach(el => el.addStudentLikes = function(){++this.studentLikes});
+mentors.forEach(el => el.addStudentLikes());
 console.log(mentors);
 /*
 8. Create a function that adds a student like to all mentors in the array
 */
 function addStudentLikes(mentors){
-  return mentors.map(el => ++el.studentLikes);
+  return mentors.forEach(el => ++el.studentLikes);
   //your code here
 }
 addStudentLikes(mentors);

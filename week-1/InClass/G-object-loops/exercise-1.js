@@ -7,6 +7,9 @@ const studentGrades = {
     george: 17,
     abdul: 19,
   };
+
+let studentGradesKeys = Object.keys(studentGrades);
+studentGradesKeys.filter(el => studentGrades[el] > 18).forEach(el=> console.log(` ${el.toUpperCase()} - ${studentGrades[el]}`));
   
   // Prints
   // TOM - 20
