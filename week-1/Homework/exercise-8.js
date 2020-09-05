@@ -161,15 +161,24 @@ console.log(mentors);
 */
 
 function mentorWithMoreSkills(mentors){
-  return mentors.map(el => el.skills.length)
+  let maxSkills = Math.max.apply(null,mentors.map(el => el.skills.length));
+  return mentors.filter(el => el.skills.length === maxSkills).map(el => el.firstName);
 }
+console.log(`the mentor with more nunmber of skills is ${ mentorWithMoreSkills(mentors) }`);
 
 /*
 7. Create an object method .addStudentLikes() that increments by one the attribute studentLikes
-
+*/
+mentors.map(el => el.addStudentLikes = function(){++this.studentLikes});
+mentors.map(el => el.addStudentLikes());
+console.log(mentors);
+/*
 8. Create a function that adds a student like to all mentors in the array
-
+*/
 function addStudentLikes(mentors){
+  return mentors.map(el => ++el.studentLikes);
   //your code here
-}*/
+}
+addStudentLikes(mentors);
+console.log(mentors);
 
