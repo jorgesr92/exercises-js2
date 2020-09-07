@@ -52,3 +52,10 @@ writers.forEach(writer => {
   }
 });
 
+console.log("with destructuring method");
+writers.forEach(({alive, firstName, lastName, age, occupation}) => {
+  if (alive){
+    console.log(`Hi, my name is ${firstName} ${lastName}. I am ${age} years old, and work as a ${occupation}.`);
+  }
+});
+
