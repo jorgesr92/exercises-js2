@@ -130,7 +130,7 @@ let arrayColors = ['red', 'green', 'cyan', 'white', 'blue'];
 function changeBackgroundColour(){
     let body = document.querySelector('body');
     let currentColor = arrayColors.indexOf(body.style.backgroundColor);
-    currentColor >= 4 || currentColor < 0 ? currentColor = 0: currentColor++ ;
+    currentColor >= arrayColors.length-1 || currentColor < 0 ? currentColor = 0: currentColor++ ;
     body.style.backgroundColor = arrayColors[currentColor];
 }
 
