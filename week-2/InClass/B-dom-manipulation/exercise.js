@@ -46,14 +46,14 @@ Task 3
 
 Write JavaScript below that changes the background colour of the page when the 'Change colour' button is clicked.
 */
-function changeBackgroundColour(){
+/* function changeBackgroundColour(){
     let body = document.querySelector('body');
     body.style.backgroundColor = 'cyan';
 }
 
 let buttonChangeColour = document.getElementById('bgrChangeBtn');
 buttonChangeColour.addEventListener('click', changeBackgroundColour);
-
+ */
 /*
 Task 4
 ======
@@ -63,10 +63,10 @@ When a user clicks the ‘Add some text’ button, a new paragraph should be add
 
 function addSomeText(newText){
     let paragraph = document.createElement('p');
-    // paragraph.innerText = newText.toUpperCase();
+    typeof newText === 'string' ? paragraph.innerText = newText.toUpperCase() : paragraph.innerText = "Add some Text";
     //console.log(paragraph);
-    let lernMoreH2 = document.querySelector('.heading-underline');
-    lernMoreH2.appendChild(paragraph);
+    let lernMoreDivArticle = document.querySelector('#mainArticles');
+    lernMoreDivArticle.appendChild(paragraph);
 }
 
 let newTextButton = document.querySelector('#addTextBtn');
@@ -106,8 +106,14 @@ Also clear the text inside the input field
 */
 
 function add(){
-
+    let newTextAdded = document.querySelector('#content input');
+    let text = newTextAdded.value;
+    addSomeText(text);
+    newTextAdded.value = "";
 }
+
+let addButtonText = document.querySelector('#addArticleBtn');
+addButtonText.addEventListener('click', add);
 
 
 /*
@@ -119,3 +125,14 @@ Using the same function in Task 3, every time the 'Change colour' button is clic
 The next color when you are in the last color of the array will be the first color again.
 */
 
+let arrayColors = ['red', 'green', 'cyan', 'white', 'blue'];
+
+function changeBackgroundColour(){
+    let body = document.querySelector('body');
+    let currentColor = arrayColors.indexOf(body.style.backgroundColor);
+    currentColor >= 4 || currentColor < 0 ? currentColor = 0: currentColor++ ;
+    body.style.backgroundColor = arrayColors[currentColor];
+}
+
+let buttonChangeColour = document.getElementById('bgrChangeBtn');
+buttonChangeColour.addEventListener('click', changeBackgroundColour);
