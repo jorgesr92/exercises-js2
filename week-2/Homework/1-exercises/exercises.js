@@ -17,15 +17,21 @@
 let content = document.querySelector("#content");
 
 
+function elementCreator(typeElement, className, displayAtribut){
+  let divcreated = document.createElement(typeElement);
+  divcreated.classList.value = className;
+  divcreated.style.display = displayAtribut;
+  return divcreated;
+
+}
+
+
 function exerciseOne(arrayOfPeople) {
-  let divPersons = document.createElement('div');
-  divPersons.classList.value = 'content-persons';
-  divPersons.style.display = 'flex';
+  let divPersons = elementCreator('div','content-persons', 'flex');
   content.appendChild(divPersons);
 
   arrayOfPeople.map(people => {
-    let divPerson = document.createElement('div');
-    divPerson.classList.value = 'class-person';
+    let divPerson = elementCreator('div','class-person', '')
     divPerson.style.boxShadow = '0 4px 5px rgba(0,0,0,0.2)';
     divPerson.style.flex= 'auto';
     divPerson.style.textAlign = 'center';
@@ -48,8 +54,7 @@ function exerciseOne(arrayOfPeople) {
  */
 function exerciseTwo(shopping) {
   // add div of list
-  let divList = document.createElement('div');
-  divList.classList.value = 'content-list';
+  let divList = elementCreator('div','content-list', '');
   divList.style.textAlign = "center";
   divList.style.boxShadow = '0 4px 5px rgba(0,0,0,0.2)';
   divList.style.backgroundColor = 'cyan';
@@ -119,10 +124,8 @@ let bookImg = [
 ]
 
 function exerciseThree(books) {
-  let divBooks = document.createElement('div');
-  divBooks.classList.value = 'content-books';
+  let divBooks = elementCreator('div','content-books', '');
   divBooks.style.textAlign = "center";
-  divBooks.style.display = 'flex';
   content.appendChild(divBooks);
   // add title of list
   let titleBooks = document.createElement('h1');
@@ -130,9 +133,9 @@ function exerciseThree(books) {
   titleBooks.innerText = "My books";
   divBooks.appendChild(titleBooks);
 
-  let listBooks = document.createElement('ul');
+  let listBooks = elementCreator('ul','', 'flex');
   divBooks.appendChild(listBooks);
-  let listUl = document.querySelector("#content").lastChild;
+  let listUl = document.querySelector(".content-books ul");
   
   books.forEach(book => {
     let itemList = document.createElement('li');
