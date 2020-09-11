@@ -63,17 +63,27 @@ When a user clicks the ‘Add some text’ button, a new paragraph should be add
 
 function addSomeText(newText){
     let paragraph = document.createElement('p');
+    paragraph.classList.add('article-lead');
+    let articleP = document.createElement('article');
+    articleP.classList.add('article');
     typeof newText === 'string' ? paragraph.innerText = newText.toUpperCase() : paragraph.innerText = "Add some Text";
-    //console.log(paragraph);
     let lernMoreDivArticle = document.querySelector('#mainArticles');
-    lernMoreDivArticle.appendChild(paragraph);
+    articleP.appendChild(paragraph);
+    lernMoreDivArticle.appendChild(articleP);
 }
 
 let newTextButton = document.querySelector('#addTextBtn');
 newTextButton.addEventListener('click', addSomeText);
 
-
-
+/* 
+let a = document.querySelector('#mainArticles')
+- undefined
+a.classList
+- DOMTokenList ["articles", value: "articles"]
+b = a.classList.value
+- "articles"
+b
+- "articles" */
 
 
 
@@ -104,17 +114,56 @@ Using the same function in Task 4,
 When the 'Add' button is clicked, get the text inside the input field and create a new paragraph in the "LEARN MORE" section
 Also clear the text inside the input field
 */
+let newTextAdded = document.querySelector('#content input');
+let addButtonText = document.querySelector('#addArticleBtn');
+let errorsCounter = 1;
 
 function add(){
-    let newTextAdded = document.querySelector('#content input');
     let text = newTextAdded.value;
     addSomeText(text);
+    errorsCounter = 1;
     newTextAdded.value = "";
 }
 
-let addButtonText = document.querySelector('#addArticleBtn');
-addButtonText.addEventListener('click', add);
 
+//addButtonText.addEventListener('click', add);
+
+
+// validaciones
+function validation () {
+    let text = newTextAdded.value;
+    !text ? noTextPresent() : add(text);
+}
+
+addButtonText.addEventListener('click', validation);
+
+
+function test() {
+    console.log("test!");
+    newTextAdded.style.border = '1px solid rgba(0,0,0,.15)';
+    let noTextAlert = document.getElementById('alertaNoText');
+    noTextAlert ? noTextAlert.remove(): console.log("Ha entendido el error!");
+}
+
+newTextAdded.addEventListener('change', test);
+
+let divAddText = document.getElementById('alert1');
+
+function noTextPresent() {
+    newTextAdded.style.border = '1px solid red'
+    let alertNoText = document.createElement('p');
+    alertNoText.style.color = 'red';
+    alertNoText.style.textAlign = 'center';
+    alertNoText.id = 'alertaNoText';
+    alertNoText.innerText = "No hay texto, ¡Escribe algo!";
+    document.getElementById('alertaNoText') ? errorsCounter++ : divAddText.appendChild(alertNoText);
+    errorsCounter === 3 ? seriousAlert() : console.log(`Error, ¡${errorsCounter}º aviso!`);
+}
+
+function seriousAlert(){
+    alert(`Error, ¡${errorsCounter}º aviso! \nPara añadir un párrafo ES NECESARIO QUE INTRODUZCAS TEXTO EN EL FORMULARIO! \nGracias.`);
+    errorsCounter = 0;
+}
 
 /*
 Task 7
@@ -136,3 +185,5 @@ function changeBackgroundColour(){
 
 let buttonChangeColour = document.getElementById('bgrChangeBtn');
 buttonChangeColour.addEventListener('click', changeBackgroundColour);
+
+
