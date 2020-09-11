@@ -33,3 +33,60 @@ function clickOnGreen(){
 blueButton.addEventListener('click', clickOnBlue);
 orangeButton.addEventListener('click', clickOnOrange);
 greenButton.addEventListener('click', clickOnGreen);
+
+
+// part 2 Homework
+
+let submitButton = document.querySelector('.row div form button');
+let formEmail = document.getElementById('exampleInputEmail1');
+let emailText = formEmail.value;
+let formName = document.getElementById('example-text-input');
+let nameText = formName.value;
+let formDescribe = document.getElementById('exampleTextarea');
+let describeText = formDescribe.value;
+let errorsCounter = 0;
+
+function validationText(text){   
+    return text.length > 0 ? true : false;
+}
+
+function validationAt(email){
+    return email.split('').includes('@') ? true : false;
+}
+
+function borderOK(){
+    formEmail.style.border = '1px solid rgba(0,0,0,.15)';
+    emailText.remove()
+    formName.style.border = '1px solid rgba(0,0,0,.15)';
+    nameText.remove()
+    formDescribe.style.border = '1px solid rgba(0,0,0,.15)';
+    describeText.remove()
+}
+
+function checkAll(){
+    let atPresent = validationAt(emailText) ? true : false;
+    let isEmailTextPresent = validationText(emailText) ? true : false;
+    atPresent && isEmailTextPresent ? console.log("Email OK") : formEmail.style.border = '1px solid red';
+    let namePresent = validationText(nameText) ? true : false;
+    namePresent ? console.log("Name OK") : formName.style.border = '1px solid red';
+    let describePresent = validationText(describeText) ? true : false;
+    describePresent ? console.log("Describe OK") : formDescribe.style.border = '1px solid red'
+    let isAllOK = atPresent && isEmailTextPresent && namePresent && describePresent ? true : false;
+    isAllOK ? borderOK() : console.log('Hay Errores!');
+    return isAllOK;
+}
+
+function alertOk(){
+    let allOK = checkAll() ? true: false;
+    allOK ? alert('Muchas gracias por registrate!!') : errorsCounter ++;
+    errorsCounter === 3 ? seriousAlert() : console.log(`Error, ¡${errorsCounter}º aviso!`);
+    return allOK;
+}
+
+function seriousAlert(){
+    alert(`Error, ¡${errorsCounter}º aviso! \nPara añadir un párrafo ES NECESARIO QUE INTRODUZCAS TEXTO EN EL FORMULARIO! \nGracias.`);
+    errorsCounter = 0;
+}
+
+submitButton.addEventListener('click', alertOk);
+
