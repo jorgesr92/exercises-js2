@@ -39,11 +39,11 @@ greenButton.addEventListener('click', clickOnGreen);
 
 let submitButton = document.querySelector('.row div form button');
 let formEmail = document.getElementById('exampleInputEmail1');
-let emailText = formEmail.value;
+let emailText;
 let formName = document.getElementById('example-text-input');
-let nameText = formName.value;
+let nameText;
 let formDescribe = document.getElementById('exampleTextarea');
-let describeText = formDescribe.value;
+let describeText;
 let errorsCounter = 0;
 
 function validationText(text){   
@@ -51,16 +51,17 @@ function validationText(text){
 }
 
 function validationAt(email){
+    console.log(`validation at: ${email}`);
     return email.split('').includes('@') ? true : false;
 }
 
 function borderOK(){
     formEmail.style.border = '1px solid rgba(0,0,0,.15)';
-    emailText.remove()
+    document.getElementById('exampleInputEmail1').value = "";
     formName.style.border = '1px solid rgba(0,0,0,.15)';
-    nameText.remove()
+    document.getElementById('example-text-input').value = "";
     formDescribe.style.border = '1px solid rgba(0,0,0,.15)';
-    describeText.remove()
+    document.getElementById('exampleTextarea').value = "";
 }
 
 function checkAll(){
@@ -77,10 +78,13 @@ function checkAll(){
 }
 
 function alertOk(){
+    emailText = formEmail.value;
+    nameText = formName.value;
+    describeText = formDescribe.value;
     let allOK = checkAll() ? true: false;
-    allOK ? alert('Muchas gracias por registrate!!') : errorsCounter ++;
+    allOK ? alert(`Muchas gracias ${nameText} por registrate!!`) : errorsCounter ++;
     errorsCounter === 3 ? seriousAlert() : console.log(`Error, ¡${errorsCounter}º aviso!`);
-    return allOK;
+    return allOK
 }
 
 function seriousAlert(){
@@ -88,5 +92,7 @@ function seriousAlert(){
     errorsCounter = 0;
 }
 
-submitButton.addEventListener('click', alertOk);
-
+submitButton.addEventListener('click', function(event){
+    event.preventDefault();
+    alertOk();
+},true);
