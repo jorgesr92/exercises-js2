@@ -138,7 +138,7 @@ document.getElementById('save').addEventListener('click', event => {
   const title = document.getElementById('input-title').value;
   const director = document.getElementById('input-director').value;
   const type = document.getElementById('input-type').value;
-  const haveWatched = document.getElementById('input-watched').value 
+  const haveWatched = document.getElementById('input-watched').check; 
   const newMovie = createMovieObj(title, director, type, haveWatched);
   console.log(newMovie);
   addMovies(newMovie);
