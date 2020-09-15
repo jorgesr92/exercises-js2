@@ -48,3 +48,79 @@ getButton.addEventListener('click', () => {
     
 })
 
+
+
+function createCard(divCardColumns, title, image, desc, precio){
+    const divCard = document.createElement('div');
+    divCard.style.width = '22rem';
+    divCard.classList = 'card';
+
+    const img = document.createElement('img');
+    img.src = image
+    img.classList = "card-img-top";
+
+    const div1 = document.createElement('div');
+    div1.classList = 'card-body';
+
+    const h5 = document.createElement('h5');
+    h5.classList = 'card-title';
+    h5.innerText = title;
+
+    const p1 = document.createElement('p');
+    p1.innerText = desc;
+    p1.style.fontSize = '12px'
+    p1.classList = 'card-text';
+
+    const buttonBuy = document.createElement('a');
+    buttonBuy.classList = "btn btn-primary";
+    buttonBuy.innerText = `Buy - ${precio} €`;
+
+    div1.appendChild(h5);
+    div1.appendChild(p1);
+    div1.appendChild(buttonBuy);
+
+    divCard.appendChild(img);
+    divCard.appendChild(div1);
+    
+
+    divCardColumns.appendChild(divCard)
+
+    body.appendChild(divCardColumns);
+
+}
+
+
+/* <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div> */
+
+
+function addProduct(json){
+    const divCardColumns = document.createElement('div');
+    divCardColumns.classList = 'card-columns';
+    json.forEach(element => {
+        createCard(divCardColumns, element.title, element.image, element.description, element.price)
+    });
+}
+
+const buttonGetItems = document.createElement('button');
+const br = document.createElement('br');
+buttonGetItems.innerText = 'Get shopping items';
+buttonGetItems.classList = 'btn btn-primary';
+const body = document.querySelector('body');
+body.appendChild(buttonGetItems);
+body.appendChild(br);
+buttonGetItems.addEventListener('click', () => {
+    const url = 'https://fakestoreapi.com/products';
+    fetch(url)
+    .then(response => response.json())
+    .then(json => {
+        addProduct(json);
+    })
+    .catch(error => console.error(error));
+})
