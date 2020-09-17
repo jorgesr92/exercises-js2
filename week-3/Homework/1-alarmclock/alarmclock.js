@@ -1,4 +1,12 @@
-function setAlarm() {}
+function setAlarm() {
+  let timeIn = document.
+  let h3Counter = document.getElementById('timeRemaining');
+  let stringCounter = h3Counter.textContent;
+  let arrConter = stringCounter.split(":");
+  console.log(stringCounter);
+  console.log(arrConter[arrConter.length-1]);
+
+}
 
 // DO NOT EDIT BELOW HERE
 
