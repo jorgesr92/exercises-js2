@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Slideshow</title>
-    <script src="slideshow.js"></script>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -13,5 +12,33 @@
   </head>
   <body>
     <!-- Write your HTML in here -->
+    <div id='divCenter'>
+      <div id="carouselSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div  class="carousel-item active">
+            <img id = 'images' class="d-block w-100" src="https://cyf-image-carousel.netlify.app/sample-images/kitten2.jpg" alt="First slide">
+          </div>
+        </div>
+      </div>
+      <div id = "buttonsDiv" class="btn-group" role="group">
+        <button id="autoBack" type="button" class="btn btn-secondary">Auto Back</button>
+        <button id="back" type="button" class="btn btn-secondary">Back</button>
+        <button id="stop" type="button" class="btn btn-secondary">Stop</button>
+        <button id="forward" type="button" class="btn btn-secondary">Forward</button>
+        <button id="autoForward"type="button" class="btn btn-secondary">Auto Forward</button>
+      </div>
+    </div>
+    <br>
+    <div>
+      <form>
+        <div id="center">
+          <label >¿Cuanto tiempo quieres esperar entre imagenes?</label>
+          <div >
+            <input id="time"  class="form" type="number" />
+          </div>
+        </div>
+      </form>
+    </div>
   </body>
+  <script src="slideshow.js"></script>
 </html>
