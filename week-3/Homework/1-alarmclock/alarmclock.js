@@ -1,7 +1,4 @@
 
-let pauseSecond = 0;
-
-
 function modifyCount(seconds){
   let count = seconds <= 9 ? `0${seconds}` : seconds;
   let h3Count = document.getElementById('timeRemaining');
@@ -15,25 +12,28 @@ function modifyCount(seconds){
   return seconds;
 }
 
- 
 
 function countdown(timeAlarm, setButton){
   let id = setInterval(() => {
     timeAlarm = modifyCount(timeAlarm-1);
-    pauseSecond = buttonPauseAlarm(id, timeAlarm);
+    document.getElementById("continue").disabled = true;
+    document.getElementById('pause').disabled = false;
+    buttonPauseAlarm(id);
     if (timeAlarm === 0) {
       playAlarm();
       setButton.disabled = false;
+      document.getElementById('divButton').remove();
+      document.querySelector('body').style.backgroundColor = 'cyan';
       clearInterval(id);
     }
   }, 1000);
 }
 
  
-
 function newButton(){
   const divCenter = document.querySelector('.centre');
   const divButton = document.createElement('div');
+  divButton.id = 'divButton';
   const buttonPause = document.createElement('button');
   const br = document.createElement('br');
   buttonPause.innerText = 'Pause Alarm';
@@ -42,39 +42,47 @@ function newButton(){
   buttonContinue.innerText = 'Continue Alarm';
   buttonContinue.id = 'continue';
   buttonContinue.disabled = true;
-  divCenter.appendChild(br);
   divCenter.appendChild(divButton);
+  divButton.appendChild(br);
   divButton.appendChild(buttonPause);
   divButton.appendChild(buttonContinue);
 }
 
-function buttonPauseAlarm(id, timeAlarm){
+function buttonPauseAlarm(id){
   const buttonP = document.getElementById('pause');
   buttonP.addEventListener('click',() =>{
     buttonP.disabled = true;
     document.getElementById('continue').disabled = false;
     clearInterval(id);
   })
-  return timeAlarm;
 }
 
-if (document.getElementById("continue")) {
+function buttonContinueAlarm(setButton){
   document.getElementById("continue").addEventListener("click", () => {
+    let h3Count = document.getElementById('timeRemaining');
+    let stringCount = h3Count.textContent;
+    let arrConter = stringCount.split(":");
+    let pauseSecond = parseInt(arrConter[arrConter.length-1]);
     countdown(pauseSecond, setButton);
   });
 }
 
 function setAlarm() {
-  let timeIn = document.getElementById('alarmSet').value;
+  let setButton = document.getElementById('set');
+  let timeIn = parseInt(document.getElementById('alarmSet').value);
+  let timeAlarm = 0;
   if (timeIn <= 0 || timeIn >= 60) {
     alert('Introduzca un número inferior a 60 segundos o superior a 0')
   } else{
-    let setButton = document.getElementById('set');
+    timeAlarm = modifyCount(timeIn);
     setButton.disabled = true;
     newButton();
-    let timeAlarm = modifyCount(timeIn);
     countdown(timeAlarm, setButton);
   }
+  if (timeAlarm > 0){
+    buttonContinueAlarm(setButton)
+  }
+
 }
 
 // DO NOT EDIT BELOW HERE
@@ -88,6 +96,7 @@ function setup() {
 
   document.getElementById("stop").addEventListener("click", () => {
     pauseAlarm();
+    document.querySelector('body').style.backgroundColor = 'white';
   });
 }
 
