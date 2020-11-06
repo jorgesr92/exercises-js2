@@ -61,6 +61,7 @@ buttonBack.addEventListener("click", (_event)=>{
 
 buttonForward.addEventListener("click", (_event)=>{
     clearInterval(stopInterval);
+    console.log(stopInterval);
     nextImage();
 });
 

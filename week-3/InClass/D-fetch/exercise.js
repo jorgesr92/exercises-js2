@@ -1,4 +1,4 @@
-/*
+sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss/*
 ================
 
 1. Create an HTML file that uses this javascript file.
@@ -14,7 +14,7 @@ user latitude and longitude.
 const displayTemperature = temperature => {
     const jumbotron = document.createElement('div');
     const h3 = document.createElement('h3');
-    jumbotron.appendChild(h3);
+    jumbotron.appendChild(h3);ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
     const main = document.getElementById('main');
     main.appendChild(jumbotron);
